@@ -59,13 +59,25 @@ export default function Navbar() {
   return (
     <nav className="bg-blue-900 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between">
-        
+
         {/* Logo */}
         <div className="flex items-center gap-2 ml-1">
-          <span className="text-teal-500 text-xl"></span>
-          <h1 className="font-bold text-white text-lg">
-            KidneyCare
-          </h1>
+          
+          <div ></div>
+
+          <Link to="/">
+            <h1
+              className="
+                font-extrabold
+                text-2xl
+                text-white
+                cursor-pointer
+              "
+            >
+              KidneyCare
+            </h1>
+          </Link>
+
         </div>
 
         {/* Desktop Links */}
@@ -150,28 +162,30 @@ export default function Navbar() {
                 whileTap={{ scale: 0.95 }}
                 className="hidden sm:flex"
               >
-                <Link
-                  to="/signin"
-                  className="
-                    relative
-                    overflow-hidden
-                    px-6
-                    py-2.5
-                    rounded-[22px]
-                    text-sm
-                    font-bold
-                    text-white
-                    bg-gradient-to-r
-                    from-[#2747a5]
-                    via-[#3569db]
-                    to-[#3b82f6]
-                    shadow-[0_10px_30px_rgba(59,130,246,0.35)]
-                    transition-all
-                    duration-300
-                  "
-                >
+               <Link
+  to="/signin"
+  className="
+    relative
+    overflow-hidden
+    px-6
+    py-2.5
+    rounded-[24px]
+    text-sm
+    font-bold
+    text-blue-900
+    bg-white/90
+    backdrop-blur-md
+    border border-white/40
+    shadow-[0_8px_25px_rgba(0,0,0,0.12)]
+    hover:shadow-[0_12px_35px_rgba(59,130,246,0.25)]
+    hover:scale-105
+    transition-all
+    duration-300
+  "
+>
+  
                   <span className="relative z-10 flex items-center gap-2">
-                    Sign In →
+                   login
                   </span>
 
                   {/* Shine Animation */}
@@ -265,11 +279,9 @@ export default function Navbar() {
           {!user && (
             <>
               <Link to="/signin" className="py-2">
-                Sign In
+                login
               </Link>
-              <Link to="/Signup" className="py-2">
-                Register
-              </Link>
+              
             </>
           )}
 

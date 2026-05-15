@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 // افتراضياً عندنا user من login
-const mockUser = {
-  id: "demo_patient_001",
-  name: "Ahmed Ali"
-};
+
 
 export default function SmartAlerts() {
   const [text, setText] = useState("");
@@ -12,12 +9,12 @@ export default function SmartAlerts() {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // تعيين ID تلقائي بعد login
   useEffect(() => {
-    if (mockUser) {
-      setPatientId(mockUser.id); // ممكن user.name لو عايز الاسم
-    }
-  }, []);
+  const savedPatientId =
+    localStorage.getItem("patientId") || "demo_patient_001";
+
+  setPatientId(savedPatientId);
+}, []);
 
   const analyze = () => {
     if (!text.trim()) return;
@@ -50,63 +47,65 @@ return (
     </div>
 
     {/* MAIN GRID */}
-    <div className="grid md:grid-cols-2 gap-10 items-start max-w-6xl mx-auto">
+    {/* MAIN CARD (Merged) */}
+    <div className="
+      bg-white/70 backdrop-blur-xl
+      border border-white/40
+      shadow-2xl
+      p-8 rounded-3xl
+      max-w-4xl mx-auto
+      space-y-10
+      hover:scale-[1.01]
+      transition
+    ">
 
-      {/* LEFT CARD */}
-      <div className="
-        bg-white/70 backdrop-blur-xl
-        border border-white/40
-        shadow-2xl
-        p-8 rounded-3xl
-        flex flex-col justify-between
-        hover:scale-[1.01]
-        transition
-      ">
+      {/* HEADER */}
+      <div>
+        <h2 className="text-2xl font-bold text-[#274690] mb-2">
+          Smart Alerts Dashboard
+        </h2>
 
-        <div>
-          <h2 className="text-2xl font-bold text-[#274690] mb-3">
-             Patient Alerts Dashboard
-          </h2>
-
-          <p className="text-gray-600 leading-relaxed">
-            Run anomaly detection and predictive trend analysis on patient history
-            to detect abnormal kidney patterns early.
-          </p>
-        </div>
-
-        <button className="
-          mt-8
-          bg-gradient-to-r from-[#274690] to-blue-500
-          hover:from-[#1e3a8a] hover:to-blue-600
-          text-white font-semibold
-          px-6 py-3 rounded-2xl
-          shadow-lg
-          transition
-        ">
-          Scan for Anomalies
-        </button>
-
+        <p className="text-gray-600 leading-relaxed">
+          Run anomaly detection and NLP symptom analysis to detect abnormal kidney patterns early.
+        </p>
       </div>
 
-      {/* RIGHT CARD */}
-      <div className="
-        bg-white/70 backdrop-blur-xl
-        border border-white/40
-        shadow-2xl
-        p-8 rounded-3xl
-        space-y-5
-        hover:scale-[1.01]
+      {/* SCAN BUTTON */}
+      <button className="
+        w-full
+        bg-gradient-to-r from-[#274690] to-blue-500
+        hover:from-[#1e3a8a] hover:to-blue-600
+        text-white font-semibold
+        px-6 py-3 rounded-2xl
+        shadow-lg
         transition
       ">
+        Scan for Anomalies
+      </button>
 
-        <h2 className="text-2xl font-bold text-[#274690] flex items-center gap-2">
+      {/* NLP SECTION */}
+      <div className="space-y-4">
+
+        <h3 className="text-xl font-bold text-[#274690]">
           NLP Symptom Analysis
-        </h2>
+        </h3>
 
         <p className="text-gray-600">
           Enter patient symptoms (Arabic or English) and AI will classify urgency instantly.
         </p>
-
+      {/* PATIENT ID (READ ONLY) */}
+              <input
+                value={patientId}
+                readOnly
+                className="
+                  w-full p-3 rounded-2xl
+                  bg-gray-100
+                  border border-gray-200
+                  text-gray-600
+                  cursor-not-allowed
+                  outline-none
+                "
+              />
         {/* TEXTAREA */}
         <textarea
           placeholder="Example: I feel swelling in my feet and extreme fatigue."
@@ -124,21 +123,7 @@ return (
           "
         />
 
-        {/* INPUT */}
-        <input
-          placeholder="Patient Context ID"
-          value={patientId}
-          onChange={(e) => setPatientId(e.target.value)}
-          className="
-            w-full p-3 rounded-2xl
-            bg-white/80
-            border border-gray-200
-            focus:ring-4 focus:ring-blue-100
-            focus:border-[#274690]
-            outline-none
-            shadow-sm
-          "
-        />
+       
 
         {/* BUTTON */}
         <button
@@ -174,14 +159,13 @@ return (
             border border-blue-100
             bg-gradient-to-br from-white to-blue-50
           ">
-
             <div className="flex justify-between items-center mb-4">
               <span className="
                 bg-red-100 text-red-600
                 px-4 py-1 rounded-full
                 text-sm font-bold
               ">
-                 {result.level}
+                {result.level}
               </span>
 
               <span className="text-gray-500 text-sm">
@@ -215,7 +199,6 @@ return (
               </div>
 
             </div>
-
           </div>
         )}
 

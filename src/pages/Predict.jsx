@@ -594,7 +594,7 @@ Smart Alerts →
 })()}
 
 {/* ================= BUTTONS ================= */}
-<div className="grid md:grid-cols-3 gap-5">
+<div className="grid md:grid-cols-2 gap-5">
 
   {/* Generate PDF */}
   <motion.button
@@ -618,7 +618,7 @@ Smart Alerts →
     "
   >
     <span className="relative z-10">
-      Generate PDF →
+      Generate PDF 
     </span>
 
     <motion.span
@@ -637,46 +637,7 @@ Smart Alerts →
     />
   </motion.button>
 
-  {/* Share */}
-  <motion.button
-    whileHover={{ scale: 1.04, y: -3 }}
-    whileTap={{ scale: 0.96 }}
-    className="
-      relative
-      overflow-hidden
-      bg-gradient-to-r
-      from-[#2747a5]
-      via-[#3569db]
-      to-[#3b82f6]
-      text-white
-      font-bold
-      p-5
-      rounded-[24px]
-      shadow-[0_10px_30px_rgba(59,130,246,0.35)]
-      transition-all
-      duration-300
-    "
-  >
-    <span className="relative z-10">
-      Share →
-    </span>
-
-    <motion.span
-      initial={{ x: "-120%" }}
-      whileHover={{ x: "220%" }}
-      transition={{ duration: 0.8 }}
-      className="
-        absolute
-        top-0
-        left-0
-        w-1/3
-        h-full
-        bg-white/20
-        skew-x-12
-      "
-    />
-  </motion.button>
-
+  
   {/* New Test */}
   <motion.button
     whileHover={{ scale: 1.04, y: -3 }}
@@ -715,7 +676,7 @@ Smart Alerts →
     "
   >
     <span className="relative z-10">
-      New Test →
+      New Test 
     </span>
 
     <motion.span
